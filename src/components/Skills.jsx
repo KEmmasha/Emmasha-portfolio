@@ -19,7 +19,7 @@ export default function Skills() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.entries(skills).map(([category, items], index) => (
+          {Object.entries(skills).filter(([, items]) => items.length > 0).map(([category, items], index) => (
             <motion.div 
               key={category}
               initial={{ opacity: 0, y: 20 }}

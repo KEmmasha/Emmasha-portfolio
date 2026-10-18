@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { journey } from '../data/portfolio';
 
 export default function Journey() {
+  if (!journey || journey.length === 0) return null;
+
   return (
     <section id="journey" className="py-32 px-6 md:px-12 relative overflow-hidden">
       <div className="max-w-4xl mx-auto relative z-10">

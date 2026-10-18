@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { projects } from '../data/portfolio';
-import { Code, ExternalLink, Plus } from 'lucide-react';
+import { projects, personalInfo } from '../data/portfolio';
+import { Code, ExternalLink, Plus, ArrowRight } from 'lucide-react';
 
 function ProjectCard({ project, index }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -78,8 +78,9 @@ function ProjectCard({ project, index }) {
           <div className="absolute inset-0 bg-accent/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <img 
             src={project.image} 
-            alt={`${project.title} screenshot`} 
-            className="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-700"
+            alt="TradeLink screenshot" 
+            loading="lazy"
+            className="w-full aspect-[16/10] object-cover object-top transform group-hover:scale-[1.02] transition-transform duration-700"
           />
         </div>
       </div>
@@ -88,6 +89,8 @@ function ProjectCard({ project, index }) {
 }
 
 export default function Projects() {
+  if (!projects || projects.length === 0) return null;
+
   return (
     <section id="projects" className="py-32 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
@@ -108,6 +111,17 @@ export default function Projects() {
           {projects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
+        </div>
+
+        <div className="mt-16 flex justify-center">
+          <a 
+            href={personalInfo.contact.github} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="inline-flex items-center gap-2 bg-surface-secondary border border-border text-primary px-6 py-3 rounded-lg font-medium hover:bg-border transition-colors"
+          >
+            More on GitHub <ArrowRight size={18} />
+          </a>
         </div>
       </div>
     </section>
