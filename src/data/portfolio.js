@@ -78,3 +78,14 @@ export const journey = [
     description: "A 2-month internship that strengthened my React, HTML/CSS, Tailwind, Node.js and Express skills."
   }
 ];
+
+export const terminalLines = [
+  { type: "cmd", text: "whoami" },
+  { type: "out", text: "emmasha, software engineer in Buea, Cameroon" },
+  { type: "cmd", text: "cat stack.txt" },
+  { type: "out", text: "React · Node.js · Express · MongoDB · Python · WordPress" },
+  { type: "cmd", text: "cat now.txt" },
+  { type: "out", text: "HND Software Engineering student, building and deploying projects" },
+  { type: "cmd", text: "ls projects/" },
+  { type: "out", text: "tradelink/" }
+];

@@ -8,14 +8,86 @@
   body {
     @apply bg-background text-primary font-sans antialiased selection:bg-accent/30 selection:text-white;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Keep headings clear of the fixed navbar when a nav link is clicked */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+}
+
+@layer components {
+  /* Desktop nav link: accent underline that grows in from the left */
+  .nav-link {
+    position: relative;
+    transition: color 200ms ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    background-color: theme('colors.accent');
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 200ms ease;
+  }
+
+  .nav-link.is-active {
+    color: theme('colors.accent');
+  }
+
+  .nav-link.is-active::after {
+    transform: scaleX(1);
+  }
+
+  .gh-pill {
+    transition: color 200ms ease, border-color 200ms ease, transform 200ms ease;
+  }
+
+  .logo-mark {
+    transition: color 200ms ease;
+  }
+
+  /* Hover styles only on devices that actually support hover */
+  @media (hover: hover) {
+    .nav-link:hover {
+      color: theme('colors.primary');
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    .gh-pill:hover {
+      color: theme('colors.accent');
+      border-color: theme('colors.accent');
+      transform: translateY(-1px);
+    }
+
+    .logo:hover .logo-mark {
+      color: theme('colors.accent');
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-link,
+    .nav-link::after,
+    .gh-pill,
+    .logo-mark {
+      transition: none;
+    }
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-html {
-  scroll-behavior: smooth;
 }
